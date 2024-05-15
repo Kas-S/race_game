@@ -1,0 +1,147 @@
+.car {
+  width: 100px;
+  height: 60px;
+}
+
+body {
+  background-color: #101729;
+  font-family: 'Inter', sans-serif;
+}
+
+nav {
+  background-color: #0E0921;
+  width: 100%;
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 20px;
+  color: white;
+  align-items: center;
+}
+
+.nav-logo a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nav-wrapper ul {
+  display: flex;
+  list-style: none;
+  color: white;
+  gap: 2rem;
+}
+
+.nav-wrapper ul li a {
+  color: black;
+  background-color: white;
+  border-radius: 30px;
+  padding: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.container {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.controls button {
+  border-radius: 30px;
+  background: linear-gradient(271deg, #FF7A00 -9.2%, #FEB732 29.87%, #FDE255 99.52%);
+  padding: 20px;
+  color: black;
+  border: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.race-reset-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+.track {
+  padding-left: 50px;
+  width: 100%;
+}
+
+.car-control-buttons {
+  display: flex;
+  column-gap: 2rem;
+
+}
+
+.lane {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border-top: 2px solid orange;
+  border-bottom: 2px solid orange;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.car-select-button {
+  border-radius: 30px;
+  background: linear-gradient(267deg, #3F0 2.29%, #43AF5B 98.45%);
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9em;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.car-remove-button {
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9em;
+  padding: 15px;
+  border-radius: 30px;
+  background: linear-gradient(267deg, #F00 2.29%, #672C2C 98.45%);
+  cursor: pointer;
+}
+
+.car-control-button {
+  border-radius: 30px;
+  background: #FFF;
+  border: none;
+  color: black;
+  font-weight: bold;
+  font-size: 0.9em;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.pagination ul {
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  display: flex;
+  gap: 2rem;
+}
+
+.pagination ul li a {
+  padding: 10px;
+  background-color: orange;
+  font-weight: bold;
+  border-radius: 20px;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.pagination ul li.selected a {
+  background-color: cornflowerblue;
+}
