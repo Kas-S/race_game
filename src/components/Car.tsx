@@ -20,11 +20,7 @@ function Car({color, velocity, startTime, race}: {color: string, velocity: numbe
         }
     }, [race])
 
-    useEffect(() => {
-        if (r.current && !race) {
-            r.current.style.marginLeft = "0%"
-        }
-    }, [race]);
+
     return (
         <div style={{width: "100%"}}>
             <div style={{width: "10%", height: "40px", backgroundColor: color}} ref={r}></div>
