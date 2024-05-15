@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from "react"
+import {useState, useEffect} from "react"
 import ReactPaginate from "react-paginate"
 import { Lane, CreateCar } from "./index.ts"
 import {CarType} from '../utils/types.ts'
@@ -76,7 +76,11 @@ function Garage() {
             },
             body: JSON.stringify(car)
         }).then(res => {
-            setCars((prevState) => [...prevState, {key: res.json().id, c: car}])
+            const f = async () => {
+                const r = await res.json()
+                setCars((prevState) => [...prevState, {key: r.id, c: car}])
+            }
+            f()
         })
     }
 
@@ -110,8 +114,11 @@ function Garage() {
                 },
                 body: JSON.stringify(car.c)
             }).then(res => {
-                const data = res.json()
-                new_cars[idx] = data.id
+                const f = async() => {
+                    const data = await res.json()
+                    new_cars[idx].key = data.id
+                }
+                f()
             })
         })
         setCars((prevState) => [...prevState, ...new_cars])
