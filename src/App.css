@@ -52,6 +52,7 @@ nav {
 .controls {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .controls button {
