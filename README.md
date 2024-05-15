@@ -107,7 +107,7 @@ Also, please deploy the UI to GitHub Pages, Netlify, Vercel, Cloudflare Pages, o
 
 ## 🚀 UI Deployment
 
-- [ ] **Deployment Platform:** Successfully deploy the UI on one of the following platforms: GitHub Pages, Netlify, Vercel, Cloudflare Pages, or a similar service.
+- [.] **Deployment Platform:** Successfully deploy the UI on one of the following platforms: GitHub Pages, Netlify, Vercel, Cloudflare Pages, or a similar service.
 
 ## ✅ Requirements to Commits and Repository
 
