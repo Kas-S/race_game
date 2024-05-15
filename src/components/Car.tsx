@@ -6,14 +6,17 @@ function Car({color, velocity, startTime, race}: {color: string, velocity: numbe
         const t = setInterval(() => {
             if (r.current) {
                 if (race) {
+                    console.log(race)
                     r.current.style.marginLeft = Math.min(((Date.now() - startTime) / 50) * velocity, 90) + '%'
                 }
             }
         }, 50)
         if (!race) {
             clearInterval(t)
-            if (r.current)
+            if (r.current) {
                 r.current.style.marginLeft = "0%"
+                return
+            }
         }
     }, [race])
 
