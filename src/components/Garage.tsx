@@ -18,7 +18,7 @@ function Garage() {
     const [race, setRace] = useState<boolean>(false),
           [startTime, setStartTime] = useState<number>(0)
 
-    const velocity = useRef<number[]>([])
+
 
     const itemsPerPage = 7
     useEffect(() => {
