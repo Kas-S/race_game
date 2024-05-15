@@ -168,7 +168,7 @@ function Garage() {
                 <button type="button" onClick={GenerateCars}>Generate</button>
             </div>
             <br/>
-
+            <h1 color="white">Hello</h1>
             <br/>
             <div className="lanes">
                 {displayedCars && displayedCars.map((c, i) => (
