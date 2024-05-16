@@ -39,7 +39,7 @@ class AsyncRaceApi {
             method: 'DELETE'
         })
     }
-    async start_engine(id: number) {
+    async start_engine(id: number): Promise<{velocity: number, distance: number}> {
         const result = await fetch(`${this.api_url}/engine?id=${id}&status=started`, {method: 'PATCH'})
         if (!result.ok) {
             throw Error(result.statusText)
