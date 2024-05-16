@@ -18,6 +18,8 @@ function Garage() {
     const [race, setRace] = useState<boolean>(false),
           [startTime, setStartTime] = useState<number>(0)
 
+    const [velocity, setVelocity] = useState<number[]>([]),
+          [displayedVelocity, setDisplayedVelocity] = useState<number[]>([])
 
 
     const itemsPerPage = 7
@@ -48,7 +50,16 @@ function Garage() {
         setPageCount(Math.ceil(Object.keys(cars).length / itemsPerPage));
     }, [itemOffset, itemsPerPage, cars])
 
+    useEffect(() => {
+        const endOffset = itemOffset + itemsPerPage;
+        setDisplayedVelocity(Object.values(velocity).slice(itemOffset, endOffset))
+    }, [velocity, itemsPerPage, itemOffset]);
 
+    useEffect(() => {
+        if (race && velocity.length == cars.length) {
+            setStartTime(Date.now())
+        }
+    }, [race, velocity]);
 
     function removeCar(car_key: number) {
         const idx = cars.findIndex((v) => v.key === car_key)
@@ -59,8 +70,13 @@ function Garage() {
     }
 
     const runRace = () => {
+        setVelocity([])
+        cars.forEach((car) => {
+            fetch(`http://127.0.0.1:3000/engine?id=${car.key}&status=started`, {method: "PATCH"}).then(res => res.json()).then(data => {
+                setVelocity((prevState) => [...prevState, (data.velocity / data.distance) * 10000])
+            })
+        })
         setRace(true)
-        setStartTime(Date.now())
     }
 
     const reset = () => {
@@ -168,11 +184,15 @@ function Garage() {
                 <button type="button" onClick={GenerateCars}>Generate</button>
             </div>
             <br/>
-            <h1 style={{color: "white"}}>Hello</h1>
+            <h1 style={{color: "white"}}>
+                {displayedVelocity && displayedVelocity.map((v, idx) => (
+                    <span key={Math.random() + idx}>{v} </span>
+                ))}
+            </h1>
             <br/>
             <div className="lanes">
                 {displayedCars && displayedCars.map((c, i) => (
-                    <Lane velocity={Math.random()} race={race} startTime={startTime} carColor={c.c.color} key={i + Math.random()}
+                    <Lane velocity={displayedVelocity[i] ? displayedVelocity[i] : 0} race={race && velocity.length == cars.length} startTime={startTime} carColor={c.c.color} key={i + Math.random()}
                           carKey={c.key} selectCar={setSelectedCar} carName={c.c.name} removeCar={removeCar}/>
                 ))}
             </div>
