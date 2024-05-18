@@ -21,6 +21,7 @@ function Garage() {
     const [velocity, setVelocity] = useState<number[]>([]),
           [displayedVelocity, setDisplayedVelocity] = useState<number[]>([])
 
+    const [status, setStatus] = useState<string>("")
 
     const itemsPerPage = 7
     useEffect(() => {
@@ -40,10 +41,6 @@ function Garage() {
             })
     }, [])
 
-
-
-
-
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
         setDisplayedCars(Object.values(cars).slice(itemOffset, endOffset));
@@ -53,13 +50,48 @@ function Garage() {
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
         setDisplayedVelocity(Object.values(velocity).slice(itemOffset, endOffset))
-    }, [velocity, itemsPerPage, itemOffset]);
+    }, [velocity, itemsPerPage, itemOffset])
+
+
 
     useEffect(() => {
         if (race && velocity.length == cars.length) {
             setStartTime(Date.now())
+            let best = 0,
+                max_speed = 0
+            velocity.forEach((v, i) => {
+                if (v > max_speed) {
+                    max_speed = v
+                    best = i
+                }
+            })
+            setTimeout(() => {
+                setStatus(`Winner: ${cars[best].c.name}`)
+                fetch(`http://127.0.0.1:3000/winners/${cars[best].key}`)
+                    .then((res) => res.json())
+                    .then(data => {
+                        if (data.id) {
+                            console.log("HERE")
+                            fetch(`http://127.0.0.1:3000/winners/${cars[best].key}`, {
+                                    method: "PUT",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify({wins: data.wins + 1, time: (90 / max_speed) * 10 / 1000}),
+                                })
+                        } else {
+                            fetch(`http://127.0.0.1:3000/winners`, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({wins: 1, time: (90 / max_speed) * 10 / 1000})
+                            })
+                        }
+                    })
+            }, (90 / max_speed) * 10)
         }
-    }, [race, velocity]);
+    }, [race, velocity])
 
     function removeCar(car_key: number) {
         const idx = cars.findIndex((v) => v.key === car_key)
@@ -73,9 +105,10 @@ function Garage() {
         setVelocity([])
         cars.forEach((car) => {
             fetch(`http://127.0.0.1:3000/engine?id=${car.key}&status=started`, {method: "PATCH"}).then(res => res.json()).then(data => {
-                setVelocity((prevState) => [...prevState, (data.velocity / data.distance) * 10000])
+                setVelocity((prevState) => [...prevState, (data.velocity / data.distance) * 500])
             })
         })
+        setStatus("Starting engines")
         setRace(true)
     }
 
@@ -185,9 +218,7 @@ function Garage() {
             </div>
             <br/>
             <h1 style={{color: "white"}}>
-                {displayedVelocity && displayedVelocity.map((v, idx) => (
-                    <span key={Math.random() + idx}>{v} </span>
-                ))}
+                {status}
             </h1>
             <br/>
             <div className="lanes">
