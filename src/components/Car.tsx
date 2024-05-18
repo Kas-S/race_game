@@ -7,10 +7,10 @@ function Car({color, velocity, startTime, race}: {color: string, velocity: numbe
             if (r.current) {
                 if (race) {
                     console.log(race)
-                    r.current.style.marginLeft = Math.min(((Date.now() - startTime) / 50) * velocity, 90) + '%'
+                    r.current.style.marginLeft = Math.min(((Date.now() - startTime) / 10) * velocity, 90) + '%'
                 }
             }
-        }, 50)
+        }, 10)
         if (!race) {
             clearInterval(t)
             if (r.current) {
