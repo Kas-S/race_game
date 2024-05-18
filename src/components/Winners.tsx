@@ -25,24 +25,27 @@ function Winners() {
     }, [winners]);
 
     return (
-        <table style={{color: "white"}}>
-            <thead>
-                <tr>
-                    <th>Car name</th>
-                    <th>Wins</th>
-                    <th>Best time</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div className="container">
+            <table style={{color: "white", width: '100%'}}>
+                <thead>
+                    <tr>
+                        <th>Car name</th>
+                        <th>Wins</th>
+                        <th>Best time</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {winners && winners.map((winner, i) => (
-                    <tr key={winner.id + Math.random()}>
+                    <tr key={winner.id + Math.random()} style={{textAlign: "center"}}>
                         <td>{carNames[i]}</td>
                         <td>{winner.wins}</td>
                         <td>{winner.time}</td>
                     </tr>
                 ))}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+
     )
 }
 
