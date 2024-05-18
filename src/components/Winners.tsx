@@ -25,7 +25,7 @@ function Winners() {
     }, [winners]);
 
     return (
-        <table>
+        <table style={{color: "white"}}>
             <thead>
                 <tr>
                     <th>Car name</th>
