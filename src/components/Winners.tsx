@@ -1,8 +1,7 @@
-import {useEffect, useState} from "react";
-import {WinnerType} from "../utils/types.ts";
+import {useEffect} from "react";
+
 
 function Winners() {
-    const [winners, setWinners] = useState<WinnerType[]>([])
 
     useEffect(() => {
         fetch("http://127.0.0.1:3000/winners")
