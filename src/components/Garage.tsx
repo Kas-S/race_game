@@ -57,6 +57,7 @@ function Garage() {
     useEffect(() => {
         if (race && velocity.length == cars.length) {
             setStartTime(Date.now())
+            setStatus("Racing")
             let best = 0,
                 max_speed = 0
             velocity.forEach((v, i) => {
@@ -99,6 +100,7 @@ function Garage() {
             .then(() => {
                 setCars((prevState) => [...prevState.slice(0, idx), ...prevState.slice(idx+1)])
             })
+        fetch(`http://127.0.0.1:3000/winners/${car_key}`, {method: "DELETE"})
     }
 
     const runRace = () => {
