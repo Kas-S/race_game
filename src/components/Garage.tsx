@@ -3,9 +3,11 @@ import ReactPaginate from "react-paginate"
 import { Lane, CreateCar } from "./index.ts"
 import {CarType} from '../utils/types.ts'
 import AsyncRaceApi from "../utils/async-race-api.ts";
-import CarsList from '../assets/cars_list.json'
+import CarsList from '../assets/cars_list.ts'
 
 const API = new AsyncRaceApi()
+
+
 
 
 
@@ -151,7 +153,8 @@ function Garage() {
         }
         const new_cars: {key: number, c: CarType}[] = []
         for (let i = 0; i < 100; i++) {
-            const car_name = CarsList[Math.floor(Math.random() * CarsList.length)]
+            const x = Math.floor(Math.random() * Object.keys(CarsList).length)
+            const car_name = Object.keys(CarsList)[x] + " " + Object.values(CarsList)[x][Math.floor(Math.random() * Object.values(CarsList)[x].length)]
             new_cars.push({
                 key: -1,
                 c: {name: car_name, color: get_random_color()}
