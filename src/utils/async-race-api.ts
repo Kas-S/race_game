@@ -1,7 +1,7 @@
 import {CarType, WinnerType} from './types.ts'
 
 class AsyncRaceApi {
-    api_url = 'http://127.0.0.1:3000'
+    api_url = 'http://localhost:3000'
 
     async get_resource(url: string) {
         const result = await fetch(`${this.api_url}/${url}`)

@@ -70,11 +70,11 @@ function Garage() {
             })
             setTimeout(() => {
                 setStatus(`Winner: ${cars[best].c.name}`)
-                fetch(`http://127.0.0.1:3000/winners/${cars[best].key}`)
+                fetch(`http://localhost:3000/winners/${cars[best].key}`)
                     .then((res) => res.json())
                     .then(data => {
                         if (data.id) {
-                            fetch(`http://127.0.0.1:3000/winners/${cars[best].key}`, {
+                            fetch(`http://localhost:3000/winners/${cars[best].key}`, {
                                     method: "PUT",
                                     headers: {
                                         "Content-Type": "application/json"
@@ -82,7 +82,7 @@ function Garage() {
                                     body: JSON.stringify({wins: data.wins + 1, time: (90 / max_speed) * 10 / 1000}),
                                 })
                         } else {
-                            fetch(`http://127.0.0.1:3000/winners/`, {
+                            fetch(`http://localhost:3000/winners/`, {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json"
@@ -101,13 +101,13 @@ function Garage() {
             .then(() => {
                 setCars((prevState) => [...prevState.slice(0, idx), ...prevState.slice(idx+1)])
             })
-        fetch(`http://127.0.0.1:3000/winners/${car_key}`, {method: "DELETE"})
+        fetch(`http://localhost:3000/winners/${car_key}`, {method: "DELETE"})
     }
 
     const runRace = () => {
         setVelocity([])
         cars.forEach((car) => {
-            fetch(`http://127.0.0.1:3000/engine?id=${car.key}&status=started`, {method: "PATCH"}).then(res => res.json()).then(data => {
+            fetch(`http://localhost:3000/engine?id=${car.key}&status=started`, {method: "PATCH"}).then(res => res.json()).then(data => {
                 setVelocity((prevState) => [...prevState, (data.velocity / data.distance) * 500])
             })
         })
@@ -121,7 +121,7 @@ function Garage() {
 
     const createCar = async (name: string, color: string) => {
         const car: CarType = {name: name, color: color}
-        await fetch(`http://127.0.0.1:3000/garage`, {
+        await fetch(`http://localhost:3000/garage`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -160,7 +160,7 @@ function Garage() {
             })
         }
         new_cars.forEach((car, idx: number) => {
-            fetch('http://127.0.0.1:3000/garage', {
+            fetch('http://localhost:3000/garage', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
