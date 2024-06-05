@@ -82,12 +82,12 @@ function Garage() {
                                     body: JSON.stringify({wins: data.wins + 1, time: (90 / max_speed) * 10 / 1000}),
                                 })
                         } else {
-                            fetch(`http://127.0.0.1:3000/winners`, {
+                            fetch(`http://127.0.0.1:3000/winners/`, {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json"
                                 },
-                                body: JSON.stringify({wins: 1, time: (90 / max_speed) * 10 / 1000})
+                                body: JSON.stringify({id: cars[best].key, wins: 1, time: (90 / max_speed) * 10 / 1000})
                             })
                         }
                     })
