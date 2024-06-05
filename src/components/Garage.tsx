@@ -207,14 +207,18 @@ function Garage() {
                                    name: e.target.value,
                                    color: selectedCar.c.color
                                }
-                           })}/>
-                    <input type="color" value={selectedCar.c.color} onChange={(e) => setSelectedCar({
-                        key: selectedCar.key,
-                        c: {
-                            name: selectedCar.c.name,
-                            color: e.target.value
-                        }
-                    })}/>
+                           })}
+                           className="garage-input"
+                    />
+                    <input type="color" value={selectedCar.c.color}
+                           onChange={(e) => setSelectedCar({
+                                    key: selectedCar.key,
+                                    c: {
+                                        name: selectedCar.c.name,
+                                        color: e.target.value
+                                    }
+                           })}
+                    />
                     <button type="button" onClick={updateCar}>Update</button>
                 </form>
 

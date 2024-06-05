@@ -161,8 +161,6 @@ nav {
   color: white;
   width: 100%;
   font-size: x-large;
-
-
 }
 
 .winners-table, td, th {
@@ -177,4 +175,9 @@ nav {
 
 .winners-table th {
   padding: 0.75rem;
+}
+
+.garage-input {
+  padding: 12px 20px;
+  box-sizing: border-box;
 }

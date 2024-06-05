@@ -9,7 +9,7 @@ function CreateCar({ clickEvent }: Props) {
         [color, setColor] = useState<string>('')
     return (
         <form>
-            <input type="text" placeholder="Car name" onChange={(e) => setName(e.target.value)}/>
+            <input type="text" placeholder="Car name" onChange={(e) => setName(e.target.value)} className="garage-input"/>
             <input type="color" onChange={(e) => setColor(e.target.value)}/>
             <button type="button" onClick={() => clickEvent(name, color)}>Create</button>
         </form>
