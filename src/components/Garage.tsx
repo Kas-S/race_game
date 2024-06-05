@@ -74,7 +74,6 @@ function Garage() {
                     .then((res) => res.json())
                     .then(data => {
                         if (data.id) {
-                            console.log("HERE")
                             fetch(`http://127.0.0.1:3000/winners/${cars[best].key}`, {
                                     method: "PUT",
                                     headers: {

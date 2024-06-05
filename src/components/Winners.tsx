@@ -6,7 +6,7 @@ function Winners() {
     const [carNames, setCarNames] = useState<string[]>([])
 
     useEffect(() => {
-        fetch("http://127.0.0.1:3000/winners")
+        fetch("http://localhost:3000/winners")
             .then(res => res.json())
             .then(data => {
                     setWinners(data)
@@ -16,7 +16,7 @@ function Winners() {
     useEffect(() => {
         setCarNames([])
         winners.forEach(v => {
-            fetch(`http://127.0.0.1:3000/garage/${v.id}`)
+            fetch(`http://localhost:3000/garage/${v.id}`)
                 .then(res => res.json())
                 .then(data => {
                     setCarNames((prevState) => [...prevState, data.name])
@@ -26,7 +26,7 @@ function Winners() {
 
     return (
         <div className="container">
-            <table style={{color: "white", width: '100%'}}>
+            <table style={{color: "white", width: '100%', borderWidth: '1px', border: 'solid'}}>
                 <thead>
                     <tr>
                         <th>Car name</th>
@@ -36,7 +36,7 @@ function Winners() {
                 </thead>
                 <tbody>
                 {winners && winners.map((winner, i) => (
-                    <tr key={winner.id + Math.random()} style={{textAlign: "center"}}>
+                    <tr key={winner.id} style={{textAlign: "center"}}>
                         <td>{carNames[i]}</td>
                         <td>{winner.wins}</td>
                         <td>{winner.time}</td>
