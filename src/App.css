@@ -156,3 +156,25 @@ nav {
 .car-wheels {
   fill: #313131;
 }
+
+.winners-table {
+  color: white;
+  width: 100%;
+  font-size: x-large;
+
+
+}
+
+.winners-table, td, th {
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+}
+
+.winners-table td {
+  padding: 0.75rem;
+}
+
+.winners-table th {
+  padding: 0.75rem;
+}

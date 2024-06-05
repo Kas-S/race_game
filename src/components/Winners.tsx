@@ -26,7 +26,7 @@ function Winners() {
 
     return (
         <div className="container">
-            <table style={{color: "white", width: '100%', borderWidth: '1px', border: 'solid'}}>
+            <table className="winners-table">
                 <thead>
                     <tr>
                         <th>Car name</th>
