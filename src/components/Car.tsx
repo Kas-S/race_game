@@ -10,11 +10,11 @@ function Car({color, velocity, startTime, race}: {color: string, velocity: numbe
         }
     }, [color])
 
+
     useEffect(() => {
         const t = setInterval(() => {
             if (r.current) {
                 if (race) {
-                    console.log(race)
                     r.current.style.marginLeft = Math.min(((Date.now() - startTime) / 10) * velocity, 90) + '%'
                 }
             }
